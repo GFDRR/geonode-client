@@ -298,13 +298,6 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
             }
         });
 
-        // global beforeunload handler
-        window.onbeforeunload = (function() {
-            if (this.fireEvent("beforeunload") === false) {
-                return "If you leave this page, unsaved changes will be lost.";
-            }
-        }).createDelegate(this);
-        
         // limit combo boxes to the window they belong to - fixes issues with
         // list shadow covering list items
         Ext.form.ComboBox.prototype.getListParent = function() {
@@ -598,11 +591,6 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
                     }, this);
                 }
             }
-            if (!fromLayer && !this.mapID) {
-                if (addLayers !== null) {
-                    addLayers.showCapabilitiesGrid();
-                }
-            }
 
             // add custom tree contextmenu items
             layerTree = Ext.getCmp("treecontent");
@@ -705,7 +693,10 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
                             layout: "fit",
                             region: "south",
                             height: 175
-                        }
+            }, {
+                ptype: "app_calculator",
+                outputTarget: "east"
+            }
                     ],
                     ref: "../../main"
                 }
