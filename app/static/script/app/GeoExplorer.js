@@ -694,8 +694,13 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
                             region: "south",
                             height: 175
             }, {
-                ptype: "app_calculator",
-                outputTarget: "east"
+                xtype: "panel",
+                region: "east",
+                layout: "fit",
+                collapsed: true,
+                collapsible: true,
+                width: 300,
+                items: [{ ptype: "app_calculator" }]
             }
                     ],
                     ref: "../../main"
